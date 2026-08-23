@@ -1,0 +1,9 @@
+(() => {
+  const stop = e => e.type !== 'beforeinput' || e.inputType === 'insertFromPaste'
+    ? e.stopImmediatePropagation() : null;
+
+  ['paste', 'beforeinput'].forEach(t => document.addEventListener(t, stop, true));
+  document.querySelectorAll('input, textarea, [contenteditable]').forEach(el => el.onpaste = null);
+
+  console.log('Paste unblocked.');
+})();
